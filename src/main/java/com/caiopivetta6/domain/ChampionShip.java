@@ -29,7 +29,9 @@ public class Championship implements Serializable{
 	@JsonManagedReference
 	@OneToMany(mappedBy = "championship")
 	private List<Match> matches = new ArrayList<>();
-
+	
+	
+	
 	public Championship() {
 		
 	}

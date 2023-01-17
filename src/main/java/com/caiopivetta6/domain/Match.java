@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -31,7 +32,8 @@ public class Match implements Serializable {
 	private Integer homeScoreTeam;
 	private Integer visitingScoreTeam;
 	
-	@JsonManagedReference
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "visitteam")
 	private Team visitTeam;
@@ -41,7 +43,7 @@ public class Match implements Serializable {
 	@JoinColumn(name = "championship_id")
 	private Championship championship;
 	
-	@JsonManagedReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "hometeam")
 	private Team homeTeam;
