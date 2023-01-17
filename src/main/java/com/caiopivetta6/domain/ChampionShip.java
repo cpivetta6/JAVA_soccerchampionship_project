@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +26,7 @@ public class Championship implements Serializable{
 	private Integer id;
 	private Integer c_year;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "championship")
 	private List<Match> matches = new ArrayList<>();
 

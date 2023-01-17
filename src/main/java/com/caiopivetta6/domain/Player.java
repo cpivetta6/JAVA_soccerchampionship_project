@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,7 @@ public class Player implements Serializable{
 	private Instant date;
 	private Double height;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "team_id")
 	private Team team;

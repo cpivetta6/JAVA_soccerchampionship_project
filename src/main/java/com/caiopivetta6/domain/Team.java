@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,13 +30,16 @@ public class Team implements Serializable{
 	private Integer id;
 	private String name;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "homeTeam")
 	private List<Match> matches = new ArrayList<>();
 	
+	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "stadium_id")
 	private Stadium stadium;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "team")
 	private List<Player> players = new ArrayList<>();
 	

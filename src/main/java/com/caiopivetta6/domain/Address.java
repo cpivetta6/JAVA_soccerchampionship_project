@@ -3,6 +3,7 @@ package com.caiopivetta6.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -29,6 +30,7 @@ public class Address implements Serializable{
 	private String number;
 	private String zcode;
 	
+	@JsonBackReference
 	@OneToOne(mappedBy = "address")
 	private Stadium stadium;
 	

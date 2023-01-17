@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,14 +31,17 @@ public class Match implements Serializable {
 	private Integer homeScoreTeam;
 	private Integer visitingScoreTeam;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "visitteam")
 	private Team visitTeam;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "championship_id")
 	private Championship championship;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "hometeam")
 	private Team homeTeam;
