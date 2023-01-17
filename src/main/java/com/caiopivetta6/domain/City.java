@@ -14,8 +14,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "address_tb")
-public class Address implements Serializable{
+@Table(name = "city_tb")
+public class City implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -23,33 +23,23 @@ public class Address implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String publicPlace;
-	private String square;
-	private String number;
-	private String zcode;
-	
+	private String name;
 	
 	@JsonManagedReference
 	@ManyToOne
-	@JoinColumn(name = "city_id")
-	private City city;
+	@JoinColumn(name = "state_id")
+	private State state;
 	
-	
-	public Address() {
+	public City() {
 		
 	}
 
-	public Address(Integer id, String publicPlace, String square, String number, String zcode, City city) {
+	public City(Integer id, String name, State state) {
 		super();
 		this.id = id;
-		this.publicPlace = publicPlace;
-		this.square = square;
-		this.number = number;
-		this.zcode = zcode;
-		this.city = city;
+		this.name = name;
+		this.state = state;
 	}
-	
-
 
 	public Integer getId() {
 		return id;
@@ -59,36 +49,12 @@ public class Address implements Serializable{
 		this.id = id;
 	}
 
-	public String getPublicPlace() {
-		return publicPlace;
+	public String getName() {
+		return name;
 	}
 
-	public void setPublicPlace(String publicPlace) {
-		this.publicPlace = publicPlace;
-	}
-
-	public String getSquare() {
-		return square;
-	}
-
-	public void setSquare(String square) {
-		this.square = square;
-	}
-
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-	public String getZcode() {
-		return zcode;
-	}
-
-	public void setZcode(String zcode) {
-		this.zcode = zcode;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -104,7 +70,7 @@ public class Address implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Address other = (Address) obj;
+		City other = (City) obj;
 		return Objects.equals(id, other.id);
 	}
 	

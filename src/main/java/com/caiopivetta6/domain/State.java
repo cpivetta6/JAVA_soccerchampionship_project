@@ -1,17 +1,23 @@
 package com.caiopivetta6.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+
 @Entity
-@Table(name = "championship_tb")
-public class Championship implements Serializable{
+@Table(name = "state_tb")
+public class State implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -19,16 +25,30 @@ public class Championship implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer c_year;
-
-	public Championship() {
+	private String name;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "state")
+	private List<City> city = new ArrayList<>();
+	
+	public State() {
 		
 	}
 
-	public Championship(Integer id, Integer c_year) {
+	public State(Integer id, String name) {
 		super();
 		this.id = id;
-		this.c_year = c_year;
+		this.name = name;
+	}
+	
+	
+
+	public List<City> getCity() {
+		return city;
+	}
+
+	public void setCity(List<City> city) {
+		this.city = city;
 	}
 
 	public Integer getId() {
@@ -38,15 +58,13 @@ public class Championship implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
 
-	public Integer getC_year() {
-		return c_year;
+	public String getName() {
+		return name;
 	}
 
-	public void setC_year(Integer c_year) {
-		this.c_year = c_year;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -62,10 +80,9 @@ public class Championship implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Championship other = (Championship) obj;
+		State other = (State) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 	
 	
 	
