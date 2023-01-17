@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.caiopivetta6.domain.Address;
 import com.caiopivetta6.domain.City;
 import com.caiopivetta6.domain.State;
 import com.caiopivetta6.repositories.AddressRepository;
@@ -57,7 +58,7 @@ public class SoccerChampionshipApplication implements CommandLineRunner {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		//City and State
+		//CITY AND STATE
 		
 		State state1 = new State(null, "Veneto");
 		State state2 = new State(null, "Piemonte");
@@ -70,6 +71,14 @@ public class SoccerChampionshipApplication implements CommandLineRunner {
 		
 		stateRepository.saveAll(Arrays.asList(state1,state2));
 		cityRepository.saveAll(Arrays.asList(city1,city2));
+		
+		//ADDRESS
+		
+		Address address1 = new Address(null, "Via Stadio", "Bordo Venezia", "47b", "4221423", city1);
+		Address address2 = new Address(null, "Via Giovanni Grasso", "Mazzo G.", "85a", "332123", city2);
+		
+		addressRepository.saveAll(Arrays.asList(address1,address2));
+		
 		
 	}
 
