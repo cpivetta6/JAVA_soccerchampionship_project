@@ -3,10 +3,13 @@ package com.caiopivetta6.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +23,13 @@ public class Stadium implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	
+	@OneToOne(mappedBy = "stadium")
+	private Team team;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private Address address;
 
 	public Stadium() {
 		
@@ -29,6 +39,16 @@ public class Stadium implements Serializable{
 		super();
 		this.id = id;
 		this.name = name;
+	}
+	
+	
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public Integer getId() {

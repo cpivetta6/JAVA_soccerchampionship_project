@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -24,17 +26,60 @@ public class Match implements Serializable {
 	private Instant date;
 	private Integer homeScoreTeam;
 	private Integer visitingScoreTeam;
+	private Team visitTeam;
+	
+	@ManyToOne
+	@JoinColumn(name = "championship_id")
+	private Championship championship;
+	
+	@ManyToOne
+	@JoinColumn(name = "hometeam")
+	private Team homeTeam;
+	
+	
+	
 	
 	public Match() {
 		
 	}
 
-	public Match(Integer id, Instant date, Integer homeScoreTeam, Integer visitingScoreTeam) {
+	public Match(Integer id, Instant date, Integer homeScoreTeam, Integer visitingScoreTeam, Team visiTeam) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.homeScoreTeam = homeScoreTeam;
 		this.visitingScoreTeam = visitingScoreTeam;
+		this.visitTeam = visiTeam;
+	}
+	
+	
+	
+	
+
+	public Team getVisitTeam() {
+		return visitTeam;
+	}
+
+	public void setVisitTeam(Team visitTeam) {
+		this.visitTeam = visitTeam;
+	}
+
+	public Team getHomeTeam() {
+		return homeTeam;
+	}
+
+	public void setHomeTeam(Team homeTeam) {
+		this.homeTeam = homeTeam;
+	}
+
+	
+
+	public Championship getChampionship() {
+		return championship;
+	}
+
+	public void setChampionship(Championship championship) {
+		this.championship = championship;
 	}
 
 	public Integer getId() {

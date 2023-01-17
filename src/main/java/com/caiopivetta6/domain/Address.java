@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,11 +29,15 @@ public class Address implements Serializable{
 	private String number;
 	private String zcode;
 	
+	@OneToOne(mappedBy = "address")
+	private Stadium stadium;
 	
 	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
+	
+	
 	
 	
 	public Address() {
@@ -49,7 +54,23 @@ public class Address implements Serializable{
 		this.city = city;
 	}
 	
+	
 
+	public Stadium getStadium() {
+		return stadium;
+	}
+
+	public void setStadium(Stadium stadium) {
+		this.stadium = stadium;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
 
 	public Integer getId() {
 		return id;

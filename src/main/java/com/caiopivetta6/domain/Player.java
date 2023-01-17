@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +25,10 @@ public class Player implements Serializable{
 	private Instant date;
 	private Double height;
 	
+	@ManyToOne
+	@JoinColumn(name = "team_id")
+	private Team team;
+	
 	public Player () {
 		
 	}
@@ -33,6 +39,16 @@ public class Player implements Serializable{
 		this.name = name;
 		this.date = date;
 		this.height = height;
+	}
+	
+	
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 	public Integer getId() {

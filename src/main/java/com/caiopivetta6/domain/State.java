@@ -31,6 +31,8 @@ public class State implements Serializable{
 	@OneToMany(mappedBy = "state")
 	private List<City> city = new ArrayList<>();
 	
+	
+	
 	public State() {
 		
 	}
@@ -42,7 +44,6 @@ public class State implements Serializable{
 	}
 	
 	
-
 	public List<City> getCity() {
 		return city;
 	}
