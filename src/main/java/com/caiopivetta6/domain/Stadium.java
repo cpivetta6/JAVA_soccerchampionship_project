@@ -35,14 +35,24 @@ public class Stadium implements Serializable{
 		
 	}
 
-	public Stadium(Integer id, String name) {
+	public Stadium(Integer id, String name, Address address) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.address = address;
 	}
 	
 	
 	
+	
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
 	public Address getAddress() {
 		return address;
 	}

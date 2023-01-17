@@ -33,12 +33,13 @@ public class Player implements Serializable{
 		
 	}
 
-	public Player(Integer id, String name, Instant date, Double height) {
+	public Player(Integer id, String name, Instant date, Double height, Team team) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.date = date;
 		this.height = height;
+		this.team = team;
 	}
 	
 	
