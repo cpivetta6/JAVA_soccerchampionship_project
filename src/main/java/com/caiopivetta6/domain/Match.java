@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -26,6 +27,9 @@ public class Match implements Serializable {
 	private Instant date;
 	private Integer homeScoreTeam;
 	private Integer visitingScoreTeam;
+	
+	@ManyToOne
+	@JoinColumn(name = "visitteam")
 	private Team visitTeam;
 	
 	@ManyToOne
@@ -43,13 +47,13 @@ public class Match implements Serializable {
 		
 	}
 
-	public Match(Integer id, Instant date, Integer homeScoreTeam, Integer visitingScoreTeam, Team visiTeam) {
+	public Match(Integer id, Instant date, Integer homeScoreTeam, Integer visitingScoreTeam, Team visitTeam) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.homeScoreTeam = homeScoreTeam;
 		this.visitingScoreTeam = visitingScoreTeam;
-		this.visitTeam = visiTeam;
+		this.visitTeam = visitTeam;
 	}
 	
 	

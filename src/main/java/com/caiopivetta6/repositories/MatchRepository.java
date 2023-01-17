@@ -2,9 +2,9 @@ package com.caiopivetta6.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.caiopivetta6.domain.Championship;
+import com.caiopivetta6.domain.Match;
 
-public interface MatchRepository extends JpaRepository<Championship, Integer> {
+public interface MatchRepository extends JpaRepository<Match, Integer> {
 
 	
 	

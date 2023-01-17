@@ -27,8 +27,7 @@ public class Team implements Serializable{
 	private Integer id;
 	private String name;
 	
-	@OneToMany
-	@JoinColumn(name = "match")
+	@OneToMany(mappedBy = "homeTeam")
 	private List<Match> matches = new ArrayList<>();
 	
 	@OneToOne(cascade = CascadeType.ALL)

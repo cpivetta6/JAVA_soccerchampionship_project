@@ -10,7 +10,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.caiopivetta6.domain.Address;
+import com.caiopivetta6.domain.Championship;
 import com.caiopivetta6.domain.City;
+import com.caiopivetta6.domain.Match;
 import com.caiopivetta6.domain.Player;
 import com.caiopivetta6.domain.Stadium;
 import com.caiopivetta6.domain.State;
@@ -112,9 +114,23 @@ public class SoccerChampionshipApplication implements CommandLineRunner {
 		stadiumRepository.saveAll(Arrays.asList(stadium1,stadium2));
 		addressRepository.saveAll(Arrays.asList(address1,address2));
 		
+		//MATCH AND CHAMPIONSHIP
 		
+		Championship championship = new Championship(null, 2023);
 		
+		Match match1 = new Match(null, sdf.parse("23/02/2023").toInstant(), 3, 2, team2);
+		Match match2 = new Match(null, sdf.parse("28/02/2023").toInstant(), 2, 2, team1);
 		
+		championship.getMatches().addAll(Arrays.asList(match1, match2));
+		
+		match1.setChampionship(championship);
+		match2.setChampionship(championship);
+		
+		match1.setHomeTeam(team1);
+		match2.setHomeTeam(team2);
+		
+		championshipRepository.saveAll(Arrays.asList(championship));
+		matchRepository.saveAll(Arrays.asList(match1, match2));
 		
 	}
 
