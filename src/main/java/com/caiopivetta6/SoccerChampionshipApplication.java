@@ -1,8 +1,11 @@
 package com.caiopivetta6;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -56,6 +59,8 @@ public class SoccerChampionshipApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ChampionshipRepository championshipRepository;
+	
+	
 	
 	@Override
 	public void run(String... args) throws Exception, ParseException {
@@ -126,8 +131,19 @@ public class SoccerChampionshipApplication implements CommandLineRunner {
 		match1.setChampionship(championship);
 		match2.setChampionship(championship);
 		
+		
+		
 		match1.setHomeTeam(team1);
 		match2.setHomeTeam(team2);
+		
+		List<Match> matchList = new ArrayList<>();
+		matchList.add(match1);
+		matchList.add(match2);
+		
+		championship.getClassification_(matchList);
+	
+		
+		
 		
 		championshipRepository.saveAll(Arrays.asList(championship));
 		matchRepository.saveAll(Arrays.asList(match1, match2));
